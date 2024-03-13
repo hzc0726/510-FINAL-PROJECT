@@ -20,10 +20,10 @@ jobs:
       with:
         python-version: '3.11'
         
-    - name: Create and activate virtual environment
-      run: |
-        python -m venv venv
-        source venv/bin/activate
+- name: Activate virtual environment
+  run: |
+    source ./venv/bin/activate
+
 
       
       - name: Install dependencies
