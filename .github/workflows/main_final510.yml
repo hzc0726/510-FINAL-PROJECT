@@ -13,18 +13,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.11'
-        
-- name: Activate virtual environment
-  run: |
-    source ./venv/bin/activate
+      - uses: actions/checkout@v4
 
+      - name: Set up Python version
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.11'
 
+      - name: Create and start virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
       
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -64,9 +65,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_BB48C845922F48E6ADA767B0CD15F116 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A258E3A042BB4258AE87D286E9B00E42 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D18B0BE5D2A043169B60F5C9AA9FB5E8 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_56692F90F8184723BA870411D410B8F8 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_98BC59C92A434C77B49FAE190501CF7E }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_EDEE147352CA4742A18B6F1699D0FCF1 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
